@@ -1,17 +1,6 @@
-class Cliente {
-    constructor(id, { nombre, apellido, empresa, emails, edad, tipo, pedidos }) {
-        this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.empresa = empresa;
-        this.emails = emails;
-        this.edad = edad;
-        this.tipo = tipo;
-        this.pedidos = pedidos;
-    }
-}
-
-const clientesDB = {};
+import mongoose from "mongoose";
+import { Clientes } from "./db";
+import { rejects } from "assert";
 
 export const resolvers = {
     Query:{
@@ -20,12 +9,42 @@ export const resolvers = {
         },
     },
     Mutation:{
-        crearCliente: ({ input }) => {
-            const id = require('crypto').randomBytes(10).toString('hex');
-            clientesDB[id] = input;
-            return new Cliente(id, input);
+        crearCliente: (root, {input}) => {
+            const nuevoCliente = new Clientes({
+                nombre: input.nombre,
+                apellido: input.apellido,
+                empresa: input.empresa,
+                emails: input.emails,
+                edad: input.edad,
+                tipo: input.tipo,
+                pedidos: input.pedidos
+            });
+            nuevoCliente.id = nuevoCliente._id;
+            
+            return new Promise((resolve, object) => {
+                nuevoCliente.save((error)=> {
+                    if(error) rejects(error)
+                    else resolve(nuevoCliente)
+                })
+            });
+        },
+        actualizarCliente: (root, {input}) => {
+            return new Promise((resolve, object) => {
+                Clientes.findOneAndUpdate({_id: input.id}, input, {new: true}, (error, cliente) => {
+                    if(error) ejects(error)
+                    else resolve(cliente)
+                });
+            });
+        },
+        eliminarCliente: (root, {id}) => {
+            return new Promise((resolve, object) => {
+                Clientes.findOneAndRemove({_id: id}, (error) => {
+                    if(error) rejects(error)
+                    else resolve("Se eliminó Correctamente")
+                })
+            })
         }
     }
 }
 
-// TODO: Empezar sección: 7 Instalando MongoDB
+// TODO: Continuar Seccion 8: 41. Query: Obtener clientes

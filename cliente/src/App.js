@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { ApolloProvider } from "react-apollo";
 import ApolloClient from "apollo-boost";
+import Header from "./componentes/header";
+import Clientes from "./componentes/Clientes";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
@@ -14,11 +16,12 @@ class App extends Component {
   render() {
     return (
       <ApolloProvider client={client}>
-        <h1>Hola mundo</h1>
+        <Header/>
+        <Clientes/>
       </ApolloProvider>
     );
   }
 }
 
 export default App;
-// TODO: Continuar en la seccion 11: Creando la aplicacion CRM - 51. Primeros pasos con la aplicación
+// TODO: Continuar en la seccion 11: 54. Mostrando los datos de la consulta

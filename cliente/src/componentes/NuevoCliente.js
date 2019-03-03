@@ -16,6 +16,19 @@ class NuevoCliente extends Component {
         emails: []
     }
 
+    leerCampo = i => e => { // i = indice y e = evento
+        const nuevoEmail = this.state.emails.map((email, index) => {
+            if(i !== index) return email;
+            return {
+                ...email,
+                email: e.target.value
+            }
+        });
+        this.setState({
+            emails: nuevoEmail
+        })
+    }
+
     nuevoCampo = () => {
         this.setState({
             emails: this.state.emails.concat([{email: ''}])
@@ -46,7 +59,9 @@ class NuevoCliente extends Component {
                                 onSubmit={e => {
                                         e.preventDefault();
 
-                                        const {nombre, apellido, empresa, email, edad, tipo } = this.state.cliente;
+                                        const {nombre, apellido, empresa, edad, tipo } = this.state.cliente;
+
+                                        const {emails} = this.state;
 
                                         if(nombre === '' || apellido === '' || empresa === '' || edad === '' || tipo === ''){
                                             this.setState({
@@ -63,7 +78,7 @@ class NuevoCliente extends Component {
                                             nombre,
                                             apellido,
                                             empresa,
-                                            email,
+                                            emails,
                                             edad: Number(edad),
                                             tipo
                                         }
@@ -134,6 +149,7 @@ class NuevoCliente extends Component {
                                                 <label>Correo {index + 1}:</label>
                                                 <div className="input-group">
                                                     <input
+                                                        onChange={this.leerCampo(index)}
                                                         type="email"
                                                         placeholder="Email"
                                                         className="form-control"

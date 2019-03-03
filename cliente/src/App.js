@@ -39,4 +39,4 @@ class App extends Component {
 }
 
 export default App;
-// TODO: Continuar en la seccion 11: 56. Enlazando hacia el componente de editar cliente
+// TODO: Continuar en la seccion 12: 67. Leyendo la informacion de cada uno de los inputs

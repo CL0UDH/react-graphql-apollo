@@ -42,4 +42,4 @@ class App extends Component {
 }
 
 export default App;
-// TODO: Continuar en la seccion 14: 76. Escribiendo el mutation
+// TODO: Continuar en la seccion 15: 78. Agregando propiedades para la paginación al state

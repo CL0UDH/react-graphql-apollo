@@ -1,8 +1,9 @@
 import React, { Fragment } from "react";
-import { Query } from "react-apollo";
+import { Query, Mutation } from "react-apollo";
 import { Link } from 'react-router-dom';
 
 import { CLIENTES_QUERY } from "../queries/index";
+import { ELIMINAR_CLIENTE } from '../mutations';
 
 const Conctactos = () => (
     <Query query={CLIENTES_QUERY} pollInterval={1000}>
@@ -17,6 +18,7 @@ const Conctactos = () => (
                     <h2 className="text-center">Listado de Clientes</h2>
                     <ul className="list-group">
                         {data.getClientes.map(item => {
+                            const {id} = item;
                             return(
                                 <li key={item.id} className="list-group-item">
                                     <div className="row justify-content-between align-items-center">
@@ -27,6 +29,26 @@ const Conctactos = () => (
                                             <Link to={`/cliente/editar/${item.id}`} className="btn btn-success d-block d-md-inline-block">
                                                 Editar Cliente
                                             </Link>
+                                            <Mutation mutation={ELIMINAR_CLIENTE}>
+                                                {
+                                                    eliminarCliente => (
+                                                        <button
+                                                            type="button"
+                                                            className="btn btn-danger d-block d-md-inline-block ml-2"
+                                                            onClick={ () => {
+                                                                    if(window.confirm('Seguro que deseas eliminar este cliente?')){
+                                                                        eliminarCliente({
+                                                                            variables: { id }
+                                                                        })
+                                                                    }
+                                                                }
+                                                            }
+                                                        >
+                                                            &times; Eliminar
+                                                        </button>
+                                                    )
+                                                }
+                                            </Mutation>
                                         </div>
                                     </div>
                                 </li>

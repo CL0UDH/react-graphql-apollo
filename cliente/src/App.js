@@ -42,4 +42,4 @@ class App extends Component {
 }
 
 export default App;
-// TODO: Continuar en la seccion 15: 78. Agregando propiedades para la paginación al state
+// TODO: Continuar en la seccion 15: 79. Detectando la página actual

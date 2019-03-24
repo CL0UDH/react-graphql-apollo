@@ -42,4 +42,4 @@ class App extends Component {
 }
 
 export default App;
-// TODO: Continuar en la seccion 15: 79. Detectando la página actual
+// TODO: Continuar en la seccion 15: 81. Obteniendo el numero de páginas

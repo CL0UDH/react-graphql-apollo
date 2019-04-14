@@ -42,4 +42,4 @@ class App extends Component {
 }
 
 export default App;
-// TODO: Continuar en la seccion 15: 81. Obteniendo el numero de páginas
+// TODO: Continuar en la seccion 16: 84. Creando el schema de la base de datos para productos

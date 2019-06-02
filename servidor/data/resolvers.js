@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Clientes } from "./db";
+import { Clientes, Productos } from "./db";
 import { rejects } from "assert";
 
 export const resolvers = {
@@ -22,6 +22,17 @@ export const resolvers = {
                     else resolve(count)
                 })
             })
+        },
+        getProductos: (root, {limite, offset}) => {
+            return Productos.find({}).limit(limite).skip(offset);
+        },
+        getProducto: (root, {id}) => {
+            return new Promise((resolve, object) => {
+                Productos.findById(id, (error, producto) => {
+                    if(error) rejects(error)
+                    else resolve(producto)
+                });
+            });
         }
     },
     Mutation:{
@@ -59,6 +70,21 @@ export const resolvers = {
                     else resolve("Se eliminó Correctamente")
                 })
             })
+        },
+        nuevoProducto: (root, {input}) => {
+            const nuevoProducto = new Productos({
+                nombre: input.nombre,
+                precio: input.precio,
+                stock: input.stock
+            });
+            nuevoProducto.id = nuevoProducto._id;
+
+            return new Promise((resolve, object) => {
+                nuevoProducto.save((error) => {
+                    if(error) rejects(error)
+                    else resolve(nuevoProducto)
+                })
+            });
         }
     }
 }

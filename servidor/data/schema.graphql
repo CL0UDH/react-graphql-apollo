@@ -80,4 +80,10 @@ type Mutation {
     #Nombre del resolver, input con datos y valor que retorna
     """ Te permite crear nuevos clientes """
     nuevoProducto(input: ProductoInput): Producto
+
+    """ Te permite actualizar productos """
+    actualizarProducto(input: ProductoInput): Producto
+
+    """ Te permite eliminar productos """
+    eliminarProducto(id: ID!): String
 }

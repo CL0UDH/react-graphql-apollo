@@ -58,14 +58,14 @@ export const resolvers = {
         actualizarCliente: (root, {input}) => {
             return new Promise((resolve, object) => {
                 Clientes.findOneAndUpdate({_id: input.id}, input, {new: true}, (error, cliente) => {
-                    if(error) ejects(error)
+                    if(error) rejects(error)
                     else resolve(cliente)
                 });
             });
         },
         eliminarCliente: (root, {id}) => {
             return new Promise((resolve, object) => {
-                Clientes.findOneAndRemove({_id: id}, (error) => {
+                Clientes.findOneAndDelete({_id: id}, (error) => {
                     if(error) rejects(error)
                     else resolve("Se eliminó Correctamente")
                 })
@@ -84,6 +84,22 @@ export const resolvers = {
                     if(error) rejects(error)
                     else resolve(nuevoProducto)
                 })
+            });
+        },
+        actualizarProducto:(root, {input}) => {
+            return new Promise((resolve, producto) => {
+                Productos.findOneAndUpdate({_id: input.id}, input, {new: true}, (error, producto) => {
+                    if(error) rejects(error)
+                    else resolve(producto)
+                });
+            });
+        },
+        eliminarProducto: (root, {id}) => {
+            return new Promise((resolve, producto) => {
+                Productos.findOneAndDelete({_id: id}, (error) => {
+                    if(error) rejects(error)
+                    else resolve("Se eliminó correctamente")
+                });
             });
         }
     }

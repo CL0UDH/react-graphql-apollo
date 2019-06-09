@@ -42,4 +42,4 @@ class App extends Component {
 }
 
 export default App;
-// TODO: Continuar en la seccion 17: 90 Resolver y Mutation para actualizar productos
+// TODO: Continuar en la seccion 18: 92 Creando el Componente y Route para Nuevos Productos

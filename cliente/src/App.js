@@ -44,4 +44,4 @@ class App extends Component {
 }
 
 export default App;
-// TODO: Continuar en la seccion 18: 92 Creando el Componente y Route para Nuevos Productos
+// TODO: Continuar en la seccion 18: 94 Validando el formulario de nuevos productos

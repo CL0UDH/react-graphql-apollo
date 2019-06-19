@@ -44,4 +44,4 @@ class App extends Component {
 }
 
 export default App;
-// TODO: Continuar en la seccion 18: 94 Validando el formulario de nuevos productos
+// TODO: Continuar en la seccion 19: 96 Crando la ruta para el listado de productos

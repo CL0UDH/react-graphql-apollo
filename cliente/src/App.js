@@ -9,6 +9,7 @@ import Clientes from "./componentes/Clientes/Clientes";
 import NuevoCliente from './componentes/Clientes/NuevoCliente';
 import EditarCliente from './componentes/Clientes/EditarCliente';
 import NuevoProducto from './componentes/Productos/NuevoProducto';
+import Productos from './componentes/Productos/Productos';
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
@@ -34,6 +35,7 @@ class App extends Component {
                 <Route exact path="/cliente/editar/:id" component={EditarCliente}/>
                 <Route exact path="/cliente/nuevo" component={NuevoCliente}/>
                 <Route exact path="/producto/nuevo" component={NuevoProducto}/>
+                <Route exact path="/productos" component={Productos}/>
               </Switch>
             </div>
           </Fragment>
@@ -44,4 +46,4 @@ class App extends Component {
 }
 
 export default App;
-// TODO: Continuar en la seccion 19: 96 Crando la ruta para el listado de productos
+// TODO: Continuar en la seccion 19: 97 Escribiendo un Query para obtener todos los productos

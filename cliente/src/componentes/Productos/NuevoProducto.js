@@ -2,11 +2,21 @@ import React, { Component, Fragment } from 'react';
 import { NUEVO_PRODUCTO } from '../../mutations/index';
 import { Mutation } from 'react-apollo';
 
+const initialState = {
+    nombre: '',
+    precio: '',
+    stock: ''
+}
+
 class NuevoProductos extends Component {
     state = {
-        nombre: '',
-        precio: '',
-        stock: ''
+        ...initialState
+    }
+
+    limpiarState = () => {
+        this.setState({
+            ...initialState
+        })
     }
 
     actualizarState = e => {
@@ -29,7 +39,11 @@ class NuevoProductos extends Component {
 
         // insertamos en la base de datos
         nuevoProducto().then(data => {
-            console.log(data);
+            // console.log(data);
+            this.limpiarState();
+
+            // redireccionar
+            this.props.history.push('/productos');
             
         })
     }

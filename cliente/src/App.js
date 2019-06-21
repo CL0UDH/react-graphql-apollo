@@ -46,4 +46,4 @@ class App extends Component {
 }
 
 export default App;
-// TODO: Continuar en la seccion 19: 97 Escribiendo un Query para obtener todos los productos
+// TODO: Continuar en la seccion 19: 98 Mostrando todos los productos

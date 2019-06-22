@@ -10,6 +10,7 @@ import NuevoCliente from './componentes/Clientes/NuevoCliente';
 import EditarCliente from './componentes/Clientes/EditarCliente';
 import NuevoProducto from './componentes/Productos/NuevoProducto';
 import Productos from './componentes/Productos/Productos';
+import EditarProducto from './componentes/Productos/EditarProducto';
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
@@ -36,6 +37,7 @@ class App extends Component {
                 <Route exact path="/cliente/nuevo" component={NuevoCliente}/>
                 <Route exact path="/producto/nuevo" component={NuevoProducto}/>
                 <Route exact path="/productos" component={Productos}/>
+                <Route exact path="/productos/editar/:id" component={EditarProducto}/>
               </Switch>
             </div>
           </Fragment>
@@ -46,4 +48,4 @@ class App extends Component {
 }
 
 export default App;
-// TODO: Continuar en la seccion 19: 98 Mostrando todos los productos
+// TODO: Continuar en la seccion 20: 99 Utilizando el mutation para eliminar productos

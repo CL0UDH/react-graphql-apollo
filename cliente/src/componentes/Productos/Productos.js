@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Query } from 'react-apollo';
 import { PRODUCTOS_QUERY } from '../../queries/index';
+import { Link } from 'react-router-dom';
 
 class Productos extends Component {
     state = {
@@ -37,7 +38,31 @@ class Productos extends Component {
                                     <tbody>
                                         {
                                             data.getProductos.map(item => {
-                                                
+                                                const {id} = item;
+
+                                                return (
+                                                    <tr key={id}>
+                                                        <td>{item.nombre}</td>
+                                                        <td>{item.precio}</td>
+                                                        <td>{item.stock}</td>
+                                                        <td>
+                                                            <Link 
+                                                                to={`/productos/editar/${id}`}
+                                                                className="btn btn-success"
+                                                            >
+                                                                Editar Producto
+                                                            </Link>
+                                                        </td>
+                                                        <td>
+                                                            <button
+                                                                type="button"
+                                                                className="btn btn-danger"
+                                                            >
+                                                                &times; Eliminar
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                );
                                             })
                                         }
                                     </tbody>

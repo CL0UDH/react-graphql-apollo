@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import { Query } from 'react-apollo';
+import { Query, Mutation} from 'react-apollo';
 import { PRODUCTOS_QUERY } from '../../queries/index';
+import { ELIMINAR_PRODUCTO } from '../../mutations/index';
 import { Link } from 'react-router-dom';
 
 class Productos extends Component {
@@ -54,12 +55,27 @@ class Productos extends Component {
                                                             </Link>
                                                         </td>
                                                         <td>
-                                                            <button
-                                                                type="button"
-                                                                className="btn btn-danger"
-                                                            >
-                                                                &times; Eliminar
-                                                            </button>
+                                                            <Mutation mutation={ELIMINAR_PRODUCTO}>
+                                                                {
+                                                                    eliminarProducto => (
+                                                                        <button
+                                                                            type="button"
+                                                                            className="btn btn-danger"
+                                                                            onClick={
+                                                                                () => {
+                                                                                    if(window.confirm('¿Seguro que deseas eliminar este producto?')){
+                                                                                        eliminarProducto({
+                                                                                            variables: { id }
+                                                                                        })
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        >
+                                                                            &times; Eliminar
+                                                                        </button>
+                                                                    )
+                                                                }
+                                                            </Mutation>
                                                         </td>
                                                     </tr>
                                                 );

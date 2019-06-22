@@ -59,7 +59,7 @@ class Clientes extends Component {
                                                 <div className="col-md-4 d-flex justify-content-end">
                                                     <Link to={`/cliente/editar/${item.id}`} className="btn btn-success d-block d-md-inline-block">
                                                         Editar Cliente
-                                            </Link>
+                                                    </Link>
                                                     <Mutation mutation={ELIMINAR_CLIENTE}>
                                                         {
                                                             eliminarCliente => (
@@ -76,7 +76,7 @@ class Clientes extends Component {
                                                                     }
                                                                 >
                                                                     &times; Eliminar
-                                                        </button>
+                                                                </button>
                                                             )
                                                         }
                                                     </Mutation>

@@ -48,4 +48,4 @@ class App extends Component {
 }
 
 export default App;
-// TODO: Continuar en la seccion 20: 99 Utilizando el mutation para eliminar productos
+// TODO: Continuar en la seccion 20: 100 Mostrando un mensaje cuando un producto fue eliminado

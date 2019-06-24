@@ -48,4 +48,4 @@ class App extends Component {
 }
 
 export default App;
-// TODO: Continuar en la seccion 20: 100 Mostrando un mensaje cuando un producto fue eliminado
+// TODO: Continuar en la seccion 20: 101 Obteniendo el ID del producto a editar

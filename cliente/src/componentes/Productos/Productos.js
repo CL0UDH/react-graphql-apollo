@@ -2,17 +2,28 @@ import React, { Component, Fragment } from 'react';
 import { Query, Mutation} from 'react-apollo';
 import { PRODUCTOS_QUERY } from '../../queries/index';
 import { ELIMINAR_PRODUCTO } from '../../mutations/index';
+import Exito from '../Alertas/Exito';
 import { Link } from 'react-router-dom';
 
 class Productos extends Component {
     state = {
-
+        alerta: {
+            mostrar: false,
+            mensaje: ''
+        }
     }
 
     render(){
+
+        const { alerta: {mostrar, mensaje} } = this.state;
+
+        const alerta = (mostrar) ? <Exito mensaje={mensaje}/> : '';
+
         return(
             <Fragment>
                 <h1 className="text-center mb-5">Listado de Productos</h1>
+
+                {alerta}
 
                 <Query
                     query={PRODUCTOS_QUERY}
@@ -55,7 +66,27 @@ class Productos extends Component {
                                                             </Link>
                                                         </td>
                                                         <td>
-                                                            <Mutation mutation={ELIMINAR_PRODUCTO}>
+                                                            <Mutation 
+                                                                mutation={ELIMINAR_PRODUCTO}
+                                                                onCompleted={ data => {
+                                                                        this.setState({
+                                                                            alerta: {
+                                                                                mostrar: true,
+                                                                                mensaje: data.eliminarProducto
+                                                                            }
+                                                                        }, () => {
+                                                                            setTimeout(() => {
+                                                                                this.setState({
+                                                                                    alerta: {
+                                                                                        mostrar: false,
+                                                                                        mensaje: ''
+                                                                                    }
+                                                                                })
+                                                                            }, 3000);
+                                                                        })
+                                                                    }
+                                                                }
+                                                            >
                                                                 {
                                                                     eliminarProducto => (
                                                                         <button

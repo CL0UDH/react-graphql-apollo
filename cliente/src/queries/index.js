@@ -38,3 +38,14 @@ export const PRODUCTOS_QUERY = gql`
         }
     }
 `;
+
+export const PRODUCTO_QUERY = gql`
+    query getProducto($id: ID!){
+        getProducto(id: $id){
+            id
+            nombre
+            precio
+            stock
+        }
+    }
+`;

@@ -48,4 +48,4 @@ class App extends Component {
 }
 
 export default App;
-// TODO: Continuar en la seccion 20: 101 Obteniendo el ID del producto a editar
+// TODO: Continuar en la seccion 20: 102 Pasando los datos de prodcuto a editar formulario

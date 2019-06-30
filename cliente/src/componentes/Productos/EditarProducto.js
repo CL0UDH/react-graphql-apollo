@@ -26,7 +26,8 @@ class EditarProducto extends Component {
                                
                                return (
                                    <FormularioEditarProducto
-                                        producto={data.getProducto}
+                                        producto={data}
+                                        id={id}
                                         refetch={refetch}
                                    />
                                );

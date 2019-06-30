@@ -48,4 +48,4 @@ class App extends Component {
 }
 
 export default App;
-// TODO: Continuar en la seccion 20: 102 Pasando los datos de prodcuto a editar formulario
+// TODO: Continuar en la seccion 21: 105 Paginación de los productos

@@ -33,6 +33,14 @@ export const resolvers = {
                     else resolve(producto)
                 });
             });
+        },
+        totalProductos: (root) => {
+            return new Promise((resolve, object) => {
+                Productos.countDocuments({}, (error, count) => {
+                    if (error) rejects(error)
+                    else resolve(count)
+                })
+            })
         }
     },
     Mutation:{

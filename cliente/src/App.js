@@ -48,4 +48,4 @@ class App extends Component {
 }
 
 export default App;
-// TODO: Continuar en la seccion 21: 105 Paginación de los productos
+// TODO: Continuar en la seccion 21: 106 Eliminando los productos

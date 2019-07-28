@@ -32,11 +32,11 @@ class App extends Component {
             <Header />
             <div className="container">
               <Switch>
-                <Route exact path="/" component={Clientes}/>
-                <Route exact path="/cliente/editar/:id" component={EditarCliente}/>
-                <Route exact path="/cliente/nuevo" component={NuevoCliente}/>
-                <Route exact path="/producto/nuevo" component={NuevoProducto}/>
+                <Route exact path="/clientes" component={Clientes}/>
+                <Route exact path="/clientes/nuevo" component={NuevoCliente}/>
+                <Route exact path="/clientes/editar/:id" component={EditarCliente}/>
                 <Route exact path="/productos" component={Productos}/>
+                <Route exact path="/productos/nuevo" component={NuevoProducto}/>
                 <Route exact path="/productos/editar/:id" component={EditarProducto}/>
               </Switch>
             </div>
@@ -48,4 +48,4 @@ class App extends Component {
 }
 
 export default App;
-// TODO: Continuar en la seccion 21: 106 Eliminando los productos
+// TODO: Continuar en la seccion 22: 108 Registrando el route para nuevos pedidos

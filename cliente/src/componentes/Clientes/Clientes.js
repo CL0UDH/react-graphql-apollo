@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { CLIENTES_QUERY } from "../../queries/index";
 import { ELIMINAR_CLIENTE } from '../../mutations';
 import Paginador from '../Paginador';
+import Exito from '../Alertas/Exito'
 
 class Clientes extends Component {
 
@@ -14,6 +15,10 @@ class Clientes extends Component {
         paginador: {
             offset: 0,
             actual: 1
+        },
+        alerta: {
+            mostrar: false,
+            mensaje: ''
         }
     }
 
@@ -36,6 +41,11 @@ class Clientes extends Component {
     }
 
     render() {
+
+        const { alerta: { mostrar, mensaje } } = this.state;
+
+        const alerta = (mostrar) ? <Exito mensaje={mensaje} /> : '';
+
         return(
             <Query query={CLIENTES_QUERY} pollInterval={1000} variables={{ limite: this.limite, offset: this.state.paginador.offset }}>
                 {({ loading, error, data, startPolling, stopPolling }) => {
@@ -47,6 +57,7 @@ class Clientes extends Component {
                     return (
                         <Fragment>
                             <h2 className="text-center">Listado de Clientes</h2>
+                            {alerta}
                             <ul className="list-group">
                                 {data.getClientes.map(item => {
                                     const { id } = item;
@@ -57,10 +68,31 @@ class Clientes extends Component {
                                                     {item.nombre} {item.apellido} - {item.empresa}
                                                 </div>
                                                 <div className="col-md-4 d-flex justify-content-end">
-                                                    <Link to={`/cliente/editar/${item.id}`} className="btn btn-success d-block d-md-inline-block">
+                                                    <Link to={`/clientes/editar/${item.id}`} className="btn btn-success d-block d-md-inline-block">
                                                         Editar Cliente
                                                     </Link>
-                                                    <Mutation mutation={ELIMINAR_CLIENTE}>
+                                                    <Mutation 
+                                                        mutation={ELIMINAR_CLIENTE}
+                                                        onCompleted={ 
+                                                            data => {
+                                                                this.setState({
+                                                                    alerta: {
+                                                                        mostrar: true,
+                                                                        mensaje: data.eliminarCliente
+                                                                    }
+                                                                }, () => {
+                                                                    setTimeout(() => {
+                                                                        this.setState({
+                                                                            alerta: {
+                                                                                mostrar: false,
+                                                                                mensaje: ''
+                                                                            }
+                                                                        })
+                                                                    }, 3000);
+                                                                })
+                                                            }
+                                                        }
+                                                    >
                                                         {
                                                             eliminarCliente => (
                                                                 <button
